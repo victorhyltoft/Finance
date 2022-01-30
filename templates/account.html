@@ -1,0 +1,27 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Account
+{% endblock %}
+
+{% block main %}
+    <p>
+        Username: {{ username[0]["username"] }}
+        <hr>
+    </p>
+    <p>
+        Change password:
+    </p>
+    <form action="/account" method="post">
+        <div class="form-group">
+            <input autocomplete="off" autofocus class="form-control" name="cur_pass" placeholder="Current password" type="password">
+        </div>
+        <div class="form-group">
+            <input class="form-control" name="new_pass" placeholder="New password" type="password" pattern=".{8,}" title="Password must be eight or more characters long and contain at least a letter and a number" required>
+        </div>
+        <div class="form-group">
+            <input class="form-control" name="confirmation" placeholder="Confirmation" type="password" pattern=".{8,}" title="Password must be eight or more characters long and contain at least a letter and a number" required>
+        </div>
+        <button class="btn btn-primary" type="submit">Update</button>
+    </form>
+{% endblock %}

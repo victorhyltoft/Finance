@@ -1,0 +1,43 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Index
+{% endblock %}
+
+{% block main %}
+    <table  class="table table-striped">
+        <thead>
+            <tr>
+                <th>Symbol</th>
+                <th>Name</th>
+                <th>Shares</th>
+                <th>Price</th>
+                <th>TOTAL</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% if stock != None %}
+                {% for row in range(portfolio| length) %}
+                <tr>
+                    <td>{{ portfolio[row]["symbol"] }}</td>
+                    <td>{{ portfolio[row]["name"] }}</td>
+                    <td>{{ portfolio[row]["shares"] }}</td>
+                    <td>{{ stock[row]["price"] | usd }}</td>
+                    <td>{{ (stock[row]["price"] * portfolio[row]["shares"]) | usd }}</td>
+                </tr>
+                {% endfor %}
+            {% endif %}
+                <tr>
+                    <td colspan="4">CASH</td>
+                    <td>{{ cash | usd }}</td>
+                </tr>
+
+        </tbody>
+        <tfoot>
+            <tr>
+                <td colspan="4"></td>
+                <td>{{ total | usd }}</td>
+            </tr>
+        </tfoot>
+    </table>
+{% endblock %}
